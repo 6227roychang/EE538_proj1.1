@@ -28,10 +28,7 @@ void build_adj_matrix()
 {
     adj = vector<vector<int>>(total_nodes, vector<int>(total_nodes, 0));
     for(int i = 0; i < edge_list.size(); i++){
-        for(int j = 0; j < edge_list[i].size(); j=j+2){
-
-            adj[edge_list[i][j]][edge_list[i][j+1]] = 1;
-        }
+        adj[edge_list[i][0]][edge_list[i][1]] = 1;
     }
 }
 
@@ -100,33 +97,7 @@ int main() {
     read_opinions("opinions.txt"); 
     read_edges("edge_list.txt");
 
-
-    // cout << "edgelist matrix:";
-
-    // for(int i = 0; i < edge_list.size(); i++){
-    //     for(int j = 0; j < edge_list[i].size();j++){
-    //         cout << edge_list[i][j] << " ";
-    //     }
-    //     cout << endl;
-    // }
-    // convert edge list into adjacency matrix once we know total_nodes
     build_adj_matrix();
-
-    // cout << "opinions matrix:" << endl;
-    // for(int i = 0; i < opinions.size(); i++){
-    //     cout << opinions[i];
-    //     cout << endl;
-    // }
-
-    // cout << "adj matrix:" << endl;
-    // for(int i = 0; i < adj.size(); i++){
-    //     for(int j = 0; j < adj[i].size();j++){
-    //         cout << adj[i][j] << " ";
-    //     }
-    //     cout << endl;
-    // }
-
-    // cout << "Total nodes: " << total_nodes << endl;
     
     // Run simulation
     int max_iterations = 30;
