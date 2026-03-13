@@ -112,6 +112,7 @@ int main() {
     for(int i = 0; i < max_iterations; i++){
         if(update_opinions()){
             iteration += 1;
+            cout << "Iteration " << iteration << ": fraction of 1's = " << calculate_fraction_of_ones() << endl;
         }
         else{
             break;
