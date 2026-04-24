@@ -34,13 +34,13 @@ void build_adj_matrix()
 
 double calculate_fraction_of_ones()
 {
-    double total_num = 0;
-   for(int i = 0; i < opinions.size(); i++){
-    if(opinions[i] == 1){
-        total_num += 1;
+    int count_ones = 0;
+    for (int op : opinions) {
+        if (op == 1) {
+            count_ones++;
+        }
     }
-   }
-    return total_num / opinions.size();
+    return static_cast<double>(count_ones) / opinions.size();
 }
 
 // For a given node, count majority opinion among its neighbours. Tie -> 0.
@@ -68,26 +68,20 @@ int get_majority_friend_opinions(int node)
 // Calculate new opinions for all voters and return if anyone's opinion changed
 bool update_opinions()
 {
-    vector<int>new_opinions(total_nodes,0);
+    vector<int> new_opinions(total_nodes, 0);
     bool changed = false;
 
-    for(int i = 0; i < total_nodes; i++){
+    for (int i = 0; i < total_nodes; i++) {
         new_opinions[i] = get_majority_friend_opinions(i);
-    }
 
-    for(int i = 0; i < total_nodes; i++){
-        if(new_opinions[i] != opinions[i]){
+        if (new_opinions[i] != opinions[i]) {
             changed = true;
         }
-        opinions[i] = new_opinions[i];
-
-    }
-    if(changed){
-        return true;
-    }else{
-        return false;
     }
 
+    opinions = new_opinions;
+
+    return changed;
 }
 
 int main() {
